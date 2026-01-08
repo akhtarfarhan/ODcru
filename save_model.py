@@ -11,6 +11,10 @@ from sklearn.model_selection import train_test_split
 
 os.makedirs("models_saved", exist_ok=True)
 
+import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+
+
 # Load & preprocess
 df = load_data("data/sentiment_analysis.csv")
 df["clean_text"] = df["text"].apply(clean_text)

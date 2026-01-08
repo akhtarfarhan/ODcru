@@ -1,8 +1,5 @@
 import tensorflow as tf
 
-
-
-
 def build_dl_model(input_dim):
     model = tf.keras.Sequential([
     tf.keras.layers.Dense(128, activation='relu', input_shape=(input_dim,)),
