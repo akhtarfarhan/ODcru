@@ -1,18 +1,18 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import os
 import joblib
 import numpy as np
 import tensorflow as tf
 
 from src.preprocessing import clean_text
 
+
 app = FastAPI(title="Sentiment Analysis API")
 
-import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 
 
-# Load models
 vectorizer = joblib.load("models_saved/tfidf_vectorizer.pkl")
 nb_model = joblib.load("models_saved/naive_bayes.pkl")
 dl_model = tf.keras.models.load_model("models_saved/deep_learning.h5")
@@ -23,7 +23,6 @@ class TextInput(BaseModel):
     text: str
     model: str = "naive_bayes"  
 
-# -------- Routes --------
 @app.get("/")
 def health_check():
     return {"status": "API running"}
