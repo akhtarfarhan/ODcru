@@ -1,0 +1,15 @@
+numpy
+pandas
+sentence-transformers
+torch
+scikit-learn
+tqdm
+
+
+#vector database
+langchain
+langchain-community
+faiss-cpu
+sentence-transformers
+pandas
+torch
