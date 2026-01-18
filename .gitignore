@@ -12,12 +12,19 @@ __pycache__/
 .venv/
 venv/
 env/
+yolo_task/
 
 # -----------------------------
 # Dataset / Large Files
 # -----------------------------
 data/
 datasets/
+
+# Pre-trained Model Files
+*.pt
+*.pth
+*.onnx
+*.weights
 
 # -----------------------------
 # Training Outputs / Artifacts
@@ -49,3 +56,14 @@ Thumbs.db
 # -----------------------------
 .cache/
 .cache/ultralytics/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Python Distribution / Build
+*.egg-info/
+dist/
+build/
+*.egg

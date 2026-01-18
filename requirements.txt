@@ -1,8 +1,11 @@
 ultralytics
-opencv-python
-numpy
+opencv-python==4.8.1.78
+numpy==1.26.4
+torch
+torchvision
+fastapi
+uvicorn
+python-multipart
 matplotlib
 seaborn
 pandas
-torch
-torchvision

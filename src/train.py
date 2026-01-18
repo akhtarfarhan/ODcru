@@ -12,6 +12,8 @@ def train_model():
         device=DEVICE,
         project=str(RESULTS_DIR),
         name="train",
+        seed=42,
+        deterministic=True,
         exist_ok=True
     )
 
