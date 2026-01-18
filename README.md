@@ -1,97 +1,98 @@
-# Cancer Semantic Search
+# CancerQA RAG System
 
-A semantic search system for cancer-related medical questions using embeddings and vector similarity retrieval.
-
-## Overview
-
-This project implements a retrieval system that answers cancer-related questions by:
-1. Loading medical Q&A data from a CSV dataset
-2. Chunking text into manageable segments
-3. Generating embeddings using sentence transformers
-4. Storing embeddings in a vector database
-5. Retrieving relevant answers via semantic similarity
+A Retrieval-Augmented Generation (RAG) system built with LangChain and FAISS for answering cancer-related questions using the CancerQA dataset.
 
 ## Project Structure
 
 ```
-cancer_semantic_search/
-├── data/
-│   ├── raw/                 # Original data files
-│   │   └── CancerQA.csv
-│   └── processed/           # Processed/chunked data
-│       └── chunks.json
-├── src/
-│   ├── __init__.py
-│   ├── data_loader.py       # Load CSV data
-│   ├── chunking.py          # Text chunking logic
-│   ├── embedding.py         # Generate embeddings
-│   ├── vector_store.py      # Vector storage and retrieval
-│   ├── retriever.py         # Retrieval logic
-│   └── inference.py         # Main inference pipeline
+.
 ├── config/
-│   └── config.yaml          # Configuration settings
-├── vectorstore/             # Stored embeddings (generated)
-├── requirements.txt         # Python dependencies
-├── .gitignore               # Git ignore rules
-└── README.md                # This file
+│   └── config.yaml              # Configuration settings
+├── data/
+│   ├── raw/
+│   │   └── CancerQA.csv         # Original dataset
+│   └── processed/
+│       └── chunks.json          # Processed and chunked data
+├── src/
+│   ├── app.py                   # Main application
+│   ├── data_loader.py           # Data loading utilities
+│   ├── ingest.py                # Data ingestion pipeline
+│   └── rag_chain.py             # RAG chain implementation
+├── vectorstore/
+│   └── faiss_index/
+│       └── index.faiss          # FAISS vector index
+├── requirements.txt             # Python dependencies
+└── README.md                    # This file
 ```
-
-## Requirements
-
-- Python 3.8+
-- Dependencies listed in `requirements.txt`:
-  - numpy
-  - pandas
-  - sentence-transformers
-  - torch
-  - scikit-learn
-  - tqdm
 
 ## Installation
 
-1. Clone or download the project
-2. Create a virtual environment (recommended):
+1. **Clone or download the project**
+
+2. **Create a virtual environment**
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-3. Install dependencies:
+
+3. **Install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
+## Configuration
+
+Edit `config/config.yaml` to customize:
+- Model settings
+- Chunk size and overlap
+- Vector store parameters
+- Other system configurations
+
 ## Usage
 
-Run the main inference pipeline:
+### Data Ingestion
 
+Process the raw CancerQA data and build the vector index:
 ```bash
-python src/inference.py
+python src/ingest.py
 ```
 
 This will:
-- Build an index from the cancer QA dataset
-- Start an interactive session where you can ask cancer-related questions
-- Return the most relevant answers with similarity scores
+- Load the CSV data
+- Chunk documents into manageable pieces
+- Generate embeddings
+- Store vectors in FAISS index
 
-Type `exit` to quit the program.
+### Running the Application
+
+Start the RAG system:
+```bash
+python src/app.py
+```
+
+The application will:
+- Load the FAISS vector store
+- Initialize the RAG chain
+- Accept user queries about cancer-related topics
+- Return answers retrieved from the knowledge base
 
 ## Key Components
 
-- **data_loader.py**: Loads the CancerQA.csv dataset
-- **chunking.py**: Splits long answers into smaller semantic chunks
-- **embedding.py**: Generates embeddings using sentence transformers
-- **vector_store.py**: Stores and retrieves embeddings using similarity search
-- **retriever.py**: Core retrieval logic
-- **inference.py**: Interactive query interface and main pipeline
+- **data_loader.py**: Handles loading and parsing the CancerQA dataset
+- **ingest.py**: Orchestrates document processing and vector store creation
+- **rag_chain.py**: Implements the RAG pipeline combining retrieval and generation
+- **app.py**: User-facing application interface
 
-## Configuration
+## Dependencies
 
-Adjust settings in `src/inference.py`:
-- `TOP_K`: Number of results to return (default: 3)
-- `SIMILARITY_THRESHOLD`: Minimum similarity score (default: 0.5)
+See `requirements.txt` for the full list. Key dependencies include:
+- LangChain
+- FAISS
+- OpenAI/LLM models
+- PyYAML
 
-## Output
+## Notes
 
-Generated artifacts (not tracked in git):
-- `vectorstore/`: Vector embeddings and index files
-- `data/processed/chunks.json`: Processed text chunks
+- The vector store and processed data are generated during ingestion
+- FAISS index is stored locally in `vectorstore/faiss_index/`
+- Configuration can be adjusted before running ingestion for optimal performance
