@@ -67,7 +67,7 @@ This project implements car detection using YOLO models with the following featu
 
 1. Clone or download the project:
 ```bash
-cd ODCRU
+cd ODCUR
 ```
 
 2. Install required dependencies:
