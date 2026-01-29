@@ -1,4 +1,4 @@
-# Sentiment Analysis Project (ODCRU)
+# Sentiment Analysis Project (ODCuR)
 
 A machine learning project for sentiment analysis using both Naive Bayes and Deep Learning models. This project includes data preprocessing, model training, evaluation, and a FastAPI-based REST API for predictions.
 
@@ -16,7 +16,7 @@ Both models are trained on sentiment data and can classify text into three categ
 ## Project Structure
 
 ```
-ODCRU/
+ODCuR/
 ├── api/                          # FastAPI REST API
 │   └── app.py                    # API endpoints and model serving
 ├── src/                          # Source code modules
@@ -55,7 +55,7 @@ ODCRU/
 
 1. Clone or download this project:
 ```bash
-cd ODCRU
+cd ODCuR
 ```
 
 2. Install dependencies:
@@ -182,3 +182,4 @@ The training data should be in CSV format with the following columns:
 ## Author
 
 Farhan Akhtar
+```
